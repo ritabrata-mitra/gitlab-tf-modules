@@ -1,30 +1,14 @@
-resource "aws_instance" "new_instance" {
-  region = var.region
-  vpc = var.vpc_id
-  subnet = var.subnet_id
-  publicip = false
-  ami           = var.ami_id
+resource "aws_instance" "server1" {
+  ami           = var.ami
   instance_type = var.instance_type
-  key_name = var.key_name
-  sg_name = var.sg_name
   tags = {
     Name = var.name
   }
+  key_name = var.key_name
 }
 
 #Define inputs for using the module #
-
-variable "region" {}
-variable "vpc_id" {}
-variable "subnet_id" {}
-variable "ami_id" {}
+variable "name" {}
 variable "instance_type" {}
 variable "key_name" {}
-variable "sg_name" {}
-variable "name" {}
-
-#Define outpus of the module#
-
-output "private_ip"{
-  value = aws_instance.new_instance.private_ip
-}
+variable "ami" {}
