@@ -6,8 +6,7 @@ resource "aws_instance" "new_instance" {
   ami           = var.ami_id
   instance_type = var.instance_type
   key_name = var.key_name
-  for_each           = toset(var.sg_name)
-  security_groupname = each.value
+  sg_name = var.sg_name
   tags = {
     Name = var.name
   }
