@@ -7,7 +7,7 @@ resource "aws_instance" "new_instance" {
   instance_type = var.instance_type
   key_name = var.key_name
   for_each           = toset(var.sg_name)
-  security_groupname = ${each.value}
+  security_groupname = each.value
   tags = {
     Name = var.name
   }
